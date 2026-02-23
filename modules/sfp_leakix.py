@@ -152,7 +152,9 @@ class sfp_leakix(SpiderFootPlugin):
         self.results[eventData] = True
 
         if self.opts['api_key'] == "":
-            self.debug("You enabled sfp_leakix but did not set an API key, results are limited")
+            self.error("You enabled sfp_leakix but did not set an API key!")
+            self.errorState = True
+            return
         self.debug(f"Received event, {eventName}, from {srcModuleName}")
 
         if eventName in ["IP_ADDRESS", "DOMAIN_NAME"]:
