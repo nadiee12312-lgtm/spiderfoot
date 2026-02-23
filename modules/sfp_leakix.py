@@ -26,9 +26,9 @@ class sfp_leakix(SpiderFootPlugin):
         'categories': ["Leaks, Dumps and Breaches"],
         'dataSource': {
             'website': "https://leakix.net/",
-            'model': "FREE_AUTH_UNLIMITED",
+            'model': "FREE_AUTH_LIMITED",
             'references': [
-                "https://leakix.net/api-documentation"
+                "https://docs.leakix.net/"
             ],
             'apiKeyInstructions': [
                 "Visit https://leakix.net/",
@@ -109,7 +109,6 @@ class sfp_leakix(SpiderFootPlugin):
             self.debug("Host not found")
             return None
 
-        # Future proofing - LeakIX does not implement rate limiting
         if res['code'] == '429':
             self.error("You are being rate-limited by LeakIX")
             self.errorState = True
