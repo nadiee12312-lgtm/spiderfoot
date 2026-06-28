@@ -1,3 +1,48 @@
+# 🕷️ SpiderFoot — Revived & Maintained
+
+> A community fork that keeps **SpiderFoot** alive and running on modern Python.
+> **All credit for SpiderFoot belongs to its creator, [Steve Micallef](https://github.com/smicallef).** This fork only keeps his work breathing.
+
+---
+
+## 🙏 In honor of the original author
+
+SpiderFoot was built by **Steve Micallef ([@smicallef](https://github.com/smicallef))** and given to the world as open source under the MIT license. It became one of the most loved OSINT tools ever made — **19,000+ stars**, 200+ modules, used by investigators everywhere.
+
+In November 2023 the open-source project went quiet (Steve moved on to other work). The code didn't get worse — the world moved forward around it. This fork exists out of **respect**: to make sure his creation keeps serving the community he built it for. Thank you, Steve. 🕷️
+
+## ⚰️ → 🫀 Why this fork exists
+
+By 2026, SpiderFoot **no longer installed on modern Python** (3.12–3.14). Its dependencies were frozen in 2023, so a fresh install simply broke (`lxml` failed to build, modules failed to load). Thousands of users were left with a tool they couldn't run.
+
+**This fork brings it back to life** — and restores community work that was left unmerged when the project went quiet.
+
+## ✨ What's new in this revival
+
+- 🔧 **Modernized all dependencies** — installs cleanly on **Python 3.12 / 3.13 / 3.14** again (the frozen `lxml 4.x` that broke module loading is fixed)
+- 🔄 **Migrated `PyPDF2` → `pypdf`** — the deprecated library broke the file-metadata module; now fixed
+- ✅ **All 233 modules load** and scans run again — verified, not assumed
+- 🛡️ **Kept everything MIT-licensed** — no license changes, no removed safety timeouts
+
+## 🤝 Community work restored (with full credit)
+
+Pull requests that were written by the community but never merged when the project went quiet — now given a home, **crediting their original authors**:
+
+- 🔧 **LeakIX module fix** — by **Valentin Lobstein ([@Chocapikk](https://github.com/Chocapikk))** — updated for LeakIX's new API model and docs
+- 💪 **WhatWeb JSON parsing fix** — reimplemented cleanly (idea from PR #1952 by [@louiselalanne](https://github.com/louiselalanne)), parsing line-delimited JSON without the license change or timeout removal of the original PR
+
+*More community PRs are being reviewed and integrated, one careful merge at a time.*
+
+## ⚖️ License & credit
+
+This fork remains **MIT-licensed**, exactly as Steve released it. SpiderFoot and all its original code are © Steve Micallef. This fork's only goal is to keep his work usable and to honor everyone who contributed to it.
+
+---
+
+> 📖 **Steve's original README follows below, unchanged.**
+
+---
+
 <a href="https://www.spiderfoot.net/r.php?u=aHR0cHM6Ly93d3cuc3BpZGVyZm9vdC5uZXQv&s=os_gh"><img src="https://www.spiderfoot.net/wp-content/themes/spiderfoot/img/spiderfoot-wide.png"></a>
 
 
