@@ -141,18 +141,25 @@ class sfp_tool_whatweb(SpiderFootPlugin):
 
         if p.returncode != 0:
             self.error("Unable to read WhatWeb output.")
-            self.debug("Error running WhatWeb: " + stderr + ", " + stdout)
+            self.debug("Error running WhatWeb: " + stderr.decode('utf-8', errors='ignore') + ", " + stdout.decode('utf-8', errors='ignore'))
             return
 
         if not stdout:
             self.debug(f"WhatWeb returned no output for {eventData}")
             return
 
-        try:
-            result_json = json.loads(stdout)
-        except Exception as e:
-            self.error(f"Couldn't parse the JSON output of WhatWeb: {e}")
-            return
+        # WhatWeb outputs one JSON object per line. Parse each line
+        # individually so a single malformed line doesn't discard everything.
+        result_json = []
+        for line in stdout.decode('utf-8', errors='ignore').splitlines():
+            line = line.strip()
+            if not line:
+                continue
+            try:
+                result_json.append(json.loads(line))
+            except json.JSONDecodeError:
+                self.debug(f"Skipping unparseable WhatWeb output line: {line[:100]}")
+                continue
 
         if len(result_json) == 0:
             return
